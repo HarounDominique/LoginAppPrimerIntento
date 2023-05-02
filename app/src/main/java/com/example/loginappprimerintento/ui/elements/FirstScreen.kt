@@ -14,10 +14,13 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.example.loginappprimerintento.ui.state.LoginViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FirstScreen() {
+
+    val LoginViewModel : LoginViewModel = viewModel()
 
     if (!loginScreen) {
         Column(
