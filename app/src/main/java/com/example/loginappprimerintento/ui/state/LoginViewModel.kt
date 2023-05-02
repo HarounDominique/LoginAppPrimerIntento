@@ -22,7 +22,7 @@ class LoginViewModel : ViewModel(){
         _userName = newName
     }
 
-    fun changePasswordName(newPassword: String) {
+    fun changeUserPassword(newPassword: String) {
         _userPassword = newPassword
     }
 
