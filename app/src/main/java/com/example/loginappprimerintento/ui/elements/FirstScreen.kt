@@ -14,6 +14,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.loginappprimerintento.ui.state.LoginViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -22,13 +23,13 @@ fun FirstScreen() {
 
     val LoginViewModel : LoginViewModel = viewModel()
 
-    if (!loginScreen) {
+    if (!LoginViewModel.loginScreen) {
         Column(
             modifier = Modifier,
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            if (userName == "pepe" && userPassword == "abc123") {
+            if (LoginViewModel.userName == "pepe" && LoginViewModel.userPassword == "abc123") {
                 Text(text = "Sesión iniciada con éxito.")
             } else {
                 Text(text = "Usuario o contraseña incorrectos.")
@@ -42,11 +43,11 @@ fun FirstScreen() {
         ) {
             Row() {
                 Text(text = "Usuario: ")
-                TextField(value = userName, onValueChange = { userName = it })
+                TextField(value = LoginViewModel.userName, onValueChange = { LoginViewModel.changeUserName(it) })
             }
             Row() {
                 Text(text = "Contraseña: ")
-                TextField(value = userPassword, onValueChange = { userPassword = it })
+                TextField(value = LoginViewModel.userPassword, onValueChange = { userPassword = it })
             }
             Row() {
                 Button(onClick = { loginScreen = false }) {

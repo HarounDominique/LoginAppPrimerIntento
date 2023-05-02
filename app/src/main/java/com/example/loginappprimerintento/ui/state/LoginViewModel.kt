@@ -18,5 +18,17 @@ class LoginViewModel : ViewModel(){
     private var _loginScreen by mutableStateOf(true)
     val loginScreen get() = _loginScreen
 
+    fun changeUserName(newName: String) {
+        _userName = newName
+    }
+
+    fun changePasswordName(newPassword: String) {
+        _userPassword = newPassword
+    }
+
+    fun changeScreen(newScreen: Boolean) {
+        _loginScreen = newScreen
+    }
+
 
 }
