@@ -29,6 +29,4 @@ class LoginViewModel : ViewModel(){
     fun changeScreen(newScreen: Boolean) {
         _loginScreen = newScreen
     }
-
-
 }
