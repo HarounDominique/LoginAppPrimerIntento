@@ -2,7 +2,6 @@ package com.example.loginappprimerintento.ui.elements
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,15 +10,9 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -27,17 +20,17 @@ import com.example.loginappprimerintento.ui.state.LoginViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FirstScreen(paddingValues: PaddingValues) {
+fun FirstScreen(modifier: Modifier = Modifier) {
 
-    val LoginViewModel : LoginViewModel = viewModel()
+    val loginViewModel : LoginViewModel = viewModel()
 
-    if (!LoginViewModel.loginScreen) {
+    if (!loginViewModel.loginScreen) {
         Column(
-            modifier = Modifier,
+            modifier = modifier,
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            if (LoginViewModel.userName == "pepe" && LoginViewModel.userPassword == "abc123.") {
+            if (loginViewModel.userName == "pepe" && loginViewModel.userPassword == "abc123.") {
                 Text(text = "Sesión iniciada con éxito.")
             } else {
                 Text(text = "Usuario o contraseña incorrectos.")
@@ -45,25 +38,25 @@ fun FirstScreen(paddingValues: PaddingValues) {
         }
     } else {
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row(horizontalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxWidth()
                 .padding(12.dp)) {
                 //Text(text = "Usuario: ")
-                OutlinedTextField(label = { Text("Usuario") },value = LoginViewModel.userName, onValueChange = { LoginViewModel.changeUserName(it) })
+                OutlinedTextField(label = { Text("Usuario") },value = loginViewModel.userName, onValueChange = { loginViewModel.changeUserName(it) })
             }
             Row(horizontalArrangement = Arrangement.Center,
                 modifier = Modifier.fillMaxWidth()
                     .padding(12.dp)) {
                 //Text(text = "Contraseña: ")
-                OutlinedTextField(visualTransformation = PasswordVisualTransformation(), label = { Text("Contraseña") },value = LoginViewModel.userPassword, onValueChange = { LoginViewModel.changeUserPassword(it) })
+                OutlinedTextField(visualTransformation = PasswordVisualTransformation(), label = { Text("Contraseña") },value = loginViewModel.userPassword, onValueChange = { loginViewModel.changeUserPassword(it) })
             }
             Row(horizontalArrangement = Arrangement.Center,
                 modifier = Modifier.fillMaxWidth()
                     .padding(12.dp)) {
-                Button(onClick = { LoginViewModel.changeScreen(false)}) {
+                Button(onClick = { loginViewModel.changeScreen(false)}) {
                     Text(text = "Iniciar sesión")
                 }
             }
